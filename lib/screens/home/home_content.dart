@@ -12,18 +12,6 @@ class HomeContent extends StatefulWidget {
 
 class _HomeContentState extends State<HomeContent> {
   final _apiClient = ApiClient();
-  List<Articles> articles = [];
-
-  @override
-  void initState() {
-    super.initState();
-    getArticles();
-  }
-
-  Future<void> getArticles() async {
-    articles = await _apiClient.getFromApi('ru');
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,21 +20,23 @@ class _HomeContentState extends State<HomeContent> {
       child: FutureBuilder(
         future: _apiClient.getFromApi('ru'),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData) {
             return ListView.builder(
-                itemCount: articles.length,
+                itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
-                      NewsItem(article: articles[index]),
+                      NewsItem(article: snapshot.data[index] as Article),
                       const Divider(thickness: 1.0),
                     ],
                   );
                 });
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Container();
           }
         },
       ),

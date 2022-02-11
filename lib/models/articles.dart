@@ -1,4 +1,4 @@
-class Articles {
+class Article {
   Source source;
   String title;
   String? description;
@@ -9,7 +9,7 @@ class Articles {
   final defaultImageLink =
       'https://s.daryo.uz/wp-content/uploads/2021/11/1-73.jpg';
 
-  Articles(
+  Article(
       {required this.source,
       required this.title,
       required this.description,
@@ -17,8 +17,8 @@ class Articles {
       required this.url,
       required this.urlToImage});
 
-  factory Articles.fromJson(Map<String, dynamic> map) {
-    return Articles(
+  factory Article.fromJson(Map<String, dynamic> map) {
+    return Article(
       description: map['description'],
       publishedAt: map['publishedAt'],
       source: Source.fromJson(map['source']),

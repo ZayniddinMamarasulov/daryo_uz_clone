@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:daryo_app_clone/models/articles.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,14 +7,18 @@ class ApiClient {
   final String _country = 'country=';
   final String _host = 'https://newsapi.org/v2/top-headlines?';
 
-  Future<List<Articles>> getFromApi(String country) async {
-    var uri = '$_host$_country=$country$_apiKey';
+  Future<List<Article>> getFromApi(String country) async {
+    var uri = '$_host$_country$country$_apiKey';
 
     var url = Uri.parse(uri);
     final response = await http.get(url);
-    final request = jsonDecode(response.body)['articles'] as List;
 
-    final res = request.map((e) => Articles.fromJson(e)).toList();
+    final request = jsonDecode(response.body)['articles'] as List; // List<Map<String, dynamic>>
+
+    print(request);
+
+    final res = request.map((e) => Article.fromJson(e)).toList(); // List<Articles>
     return res;
   }
+
 }
