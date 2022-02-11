@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
             Text('News'),
           ],
         ),
-        drawer: MyDrawer(),
+        drawer: const MyDrawer(),
       ),
     );
   }
@@ -36,13 +36,13 @@ AppBar buildAppBar() {
       isScrollable: true,
       tabs: [
         Tab(
-          child: const Text('SO\'NGI YANGILIKLAR'),
+          child: Text('SO\'NGI YANGILIKLAR'),
         ),
         Tab(
-          child: const Text('ASOSIY YANGILIKLAR'),
+          child: Text('ASOSIY YANGILIKLAR'),
         ),
         Tab(
-          child: const Text('BOSHQA'),
+          child: Text('BOSHQA'),
         ),
       ],
     ),
