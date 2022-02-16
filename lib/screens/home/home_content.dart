@@ -15,11 +15,11 @@ class _HomeContentState extends State<HomeContent> {
     return Container(
       margin: const EdgeInsets.only(top: 8.0),
       child: ListView.builder(
-          itemCount: News.myNews.length,
+          itemCount: DaryoNews.myNews.length,
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: [
-                NewsItem(news: News.myNews[index]),
+                NewsItem(food: DaryoNews.myNews![index]),
                 const Divider(thickness: 1.0),
               ],
             );

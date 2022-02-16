@@ -1,13 +1,13 @@
-import 'package:daryo_app_clone/models/news.dart';
+import 'package:daryo_app_clone/models/daryo_api_news.dart';
 import 'package:flutter/material.dart';
 
 class NewsItem extends StatelessWidget {
-  News news;
+     DaryoNews? food;
 
-  NewsItem({Key? key, required this.news}) : super(key: key);
+  NewsItem({Key? key, required this.food}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
       child: Column(
@@ -24,7 +24,7 @@ class NewsItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '${news.hour} | ${news.date} | ',
+                    '${food.foodId} | ${food.label} | ',
                     style: const TextStyle(color: Colors.grey, fontSize: 12.0),
                   ),
                   Icon(
@@ -34,7 +34,7 @@ class NewsItem extends StatelessWidget {
                   const SizedBox(
                     width: 4.0,
                   ),
-                  Text(news.watchCount.toString(),
+                  Text(food.watchCount.toString(),
                       style:
                           const TextStyle(color: Colors.blue, fontSize: 12.0))
                 ],
@@ -46,11 +46,11 @@ class NewsItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.network(news.imageUrl!, width: 120, height: 80),
+              Image.network(food.foodId!, width: 120, height: 80),
               const SizedBox(width: 12.0),
               Expanded(
                 child: Text(
-                  news.title!,
+                  food.foodId!,
                   style:
                       const TextStyle(fontWeight: FontWeight.w500, height: 1.2),
                 ),
