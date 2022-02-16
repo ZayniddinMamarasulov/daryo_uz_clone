@@ -3,7 +3,6 @@ import 'drawer_body.dart';
 import 'drawer_header.dart';
 
 class MyDrawer extends StatefulWidget {
-  const MyDrawer({Key? key}) : super(key: key);
 
   @override
   _MyDrawerState createState() => _MyDrawerState();

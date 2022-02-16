@@ -1,6 +1,8 @@
+import 'package:daryo_app_clone/api_client.dart';
 import 'package:daryo_app_clone/models/news.dart';
 import 'package:daryo_app_clone/screens/home/news_item.dart';
 import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
 
 class HomeContent extends StatefulWidget {
   const HomeContent({Key? key}) : super(key: key);
@@ -10,20 +12,38 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
+  final _apiClient = ApiClient();
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 8.0),
-      child: ListView.builder(
-          itemCount: News.myNews.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                NewsItem(news: News.myNews[index]),
-                const Divider(thickness: 1.0),
-              ],
+      child: FutureBuilder(
+        future: _apiClient.getFromApi('ru'),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          }),
+          } else if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      NewsItem(article: snapshot.data[index] as Articles),
+                      const Divider(thickness: 1.0),
+                    ],
+                  );
+                });
+          } else {
+            return Container(
+              color: Colors.lightBlueAccent,
+            );
+          }
+        },
+      ),
     );
   }
 }
