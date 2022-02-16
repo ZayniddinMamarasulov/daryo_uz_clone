@@ -1,6 +1,7 @@
-import 'package:daryo_app_clone/screens/drawer/drawer.dart';
-import 'package:daryo_app_clone/screens/home/home_content.dart';
 import 'package:flutter/material.dart';
+
+import '../drawer/drawer.dart';
+import 'home_content.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       length: 3,
       child: Scaffold(
         appBar: buildAppBar(),
-        body: const TabBarView(
+        body:  const TabBarView(
           children: [
             HomeContent(),
             Text('News'),
