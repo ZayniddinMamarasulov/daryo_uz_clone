@@ -8,7 +8,7 @@ import 'models/news.dart';
 class ApiClient{
     final String _apikey = '&apiKey = 7c4fde365a14427291a87754b38bbc30';
     final String _country = 'country=';
-    final String _host = 'https://newsapi.org/v2/everything?';
+    final String _host = 'https://newsapi.org/v2/top-headlines?';
 
 
 
